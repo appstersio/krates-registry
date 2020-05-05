@@ -1,0 +1,18 @@
+language: minimal
+sudo: required
+services:
+  - docker
+env:
+  global:
+    secure: PWve6ohkW8h95B/cqpXnXi2PKJsWPVaSCW71iRMVJJ9emEiDDPhYEFv2mfNlU10Bi7YPCAO/s+ETTvcjoaD3I6XOtPlxVV/nVLEx04bBmYXauxBIMlOXOXvk0T0pNXzynH44tlwh1Yv3DgaaVstRiGdK4fKTzzEpXBgIjFN3+7S+3POw7nFTY2OUVnZuofJOte0Rb4eGlyz+27AmZKV/YVPZFd+380bYATjaNLE56tUI2u0j0S3Gi7blkR5z/ABGUuhiZzjVNw3qMUL9MEqWffK3Nt8Rznfbb/Y1SL11XTM50cCQfCayEk7CEKx3q1oVToTPMxhQEF4KWQ/5uBH1bWcL/X+porHoMSHTmOZ/Aj/zwzUaYeQadFdtAmlnPKNep1zUnurKrkxF6Tca8gV2uRTomDQX9udr8FoOqIzqZ9B/PxXbeqjGggAAtI4xMek5mcKCCnWTE4aea2Rtd3SJVfgRlTcSKjG8VYo26t2tLwj45MIO8YwTTnJDs119TD/JbWrwFc+2R4jFFvSG4D1ANuBsn3MjVoMmTpQWBbiNuKrDqDH95IJThrxpmgc8rSrf+q1Tj+H27QSdPuVc8dju5k04hZnkuuftX+kRQgHRKHEB2UwrX95E7NyTbYl6+mwwonci8B2r0zwDIReXmrzwe9PbseU4ylLTxGZYfn4uxvo=
+script: make
+deploy:
+  - provider: script
+    script: make
+    on:
+      branch: master
+  - provider: script
+    script: make build login push
+    on:
+      branch: master
+      tags: true
